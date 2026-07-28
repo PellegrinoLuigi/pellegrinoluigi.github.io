@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luigi Pellegrino — Salesforce Developer</title>
+<meta name="description" content="Profilo professionale di Luigi Pellegrino, Salesforce Developer e Architect: esperienza, progetti, certificazioni e istruzione.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☁️</text></svg>">
+<style>
+  :root{
+    --bg:#faf9f6;
+    --bg-alt:#f2f0ea;
+    --card:#ffffff;
+    --text:#1c1b18;
+    --muted:#6b6862;
+    --border:#e5e2da;
+    --accent:#2f5d8a;
+    --accent-soft:#e7eef4;
+    --accent-contrast:#ffffff;
+    --shadow:0 1px 2px rgba(28,27,24,.05),0 8px 24px rgba(28,27,24,.06);
+    --serif:Georgia,'Iowan Old Style','Palatino Linotype','Book Antiqua',serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --mono:'SF Mono',SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#141310; --bg-alt:#1c1b17; --card:#1c1b18; --text:#eeeae1; --muted:#a29d90;
+      --border:#332f28; --accent:#86adcf; --accent-soft:rgba(134,173,207,.13); --accent-contrast:#12191f;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased;}
+  img,svg{max-width:100%;display:block;}
+  a{color:var(--accent);}
+
+  .topbar{position:sticky;top:0;z-index:30;background:rgba(250,249,246,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+  @media (prefers-color-scheme:dark){.topbar{background:rgba(20,19,16,.88);}}
+  .topbar-inner{max-width:1080px;margin:0 auto;padding:0 20px;height:52px;display:flex;align-items:center;justify-content:space-between;}
+  .brand{font-family:var(--serif);font-size:16px;letter-spacing:.02em;}
+  .langtoggle{display:inline-flex;border:1px solid var(--border);border-radius:999px;padding:2px;background:var(--card);}
+  .langtoggle button{border:0;background:transparent;color:var(--muted);font:inherit;font-size:12.5px;padding:5px 11px;border-radius:999px;cursor:pointer;letter-spacing:.03em;font-family:var(--mono);}
+  .langtoggle button[aria-pressed="true"]{background:var(--accent);color:var(--accent-contrast);}
+  .langtoggle button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+  .shell{max-width:1080px;margin:0 auto;padding:28px 20px 64px;display:grid;grid-template-columns:288px 1fr;gap:24px;align-items:start;}
+  @media (max-width:860px){.shell{grid-template-columns:1fr;}}
+
+  .sidebar{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;}
+  .banner{height:96px;background:
+      radial-gradient(60% 90% at 20% 20%, rgba(255,255,255,.35), transparent 60%),
+      linear-gradient(135deg,var(--accent) 0%,#5b86ab 55%,#8fb6d6 100%);
+    position:relative;}
+  .sc-card{padding:0 20px 20px;text-align:center;}
+  .avatar{
+    width:92px;height:92px;border-radius:50%;margin:-46px auto 12px;
+    display:block;background:var(--bg-alt);
+    border:4px solid var(--card);box-shadow:var(--shadow);
+    object-fit:cover;object-position:center;
+    position:relative;z-index:2;
+  }
+  .sc-card h1{font-family:var(--serif);font-weight:400;font-size:22px;margin:0 0 4px;}
+  .sc-role{font-size:13px;color:var(--accent);font-weight:600;margin:0 0 12px;line-height:1.4;}
+  .sc-bio{font-size:13px;color:var(--muted);margin:0 0 16px;text-align:left;}
+  .sc-btns{display:flex;flex-direction:column;gap:8px;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;border-radius:8px;font-size:13.5px;font-weight:600;text-decoration:none;border:1px solid var(--border);color:var(--text);transition:border-color .15s,transform .15s;}
+  .btn svg{width:15px;height:15px;flex:none;}
+  .btn.primary{background:var(--accent);color:var(--accent-contrast);border-color:var(--accent);}
+  .btn:hover{border-color:var(--accent);}
+  .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  @media (prefers-reduced-motion:no-preference){.btn:hover{transform:translateY(-1px);}}
+
+  .sc-section{padding:16px 20px;border-top:1px solid var(--border);}
+  .sc-section h2{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700;margin:0 0 12px;font-family:var(--mono);}
+  .info-row{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:6px 0;}
+  .info-row .k{color:var(--muted);}
+  .info-row .v{font-weight:600;text-align:right;}
+
+  .tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .tag{font-size:12px;padding:4px 9px;border-radius:6px;background:var(--bg-alt);border:1px solid var(--border);color:var(--text);}
+  .skill-sub{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:12px 0 6px;font-family:var(--mono);}
+  .skill-sub:first-child{margin-top:0;}
+
+  .mini-list{display:flex;flex-direction:column;gap:10px;}
+  .mini-item{display:flex;align-items:flex-start;gap:10px;font-size:13px;}
+  .mini-badge{flex:none;width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;margin-top:1px;overflow:hidden;}
+  .mini-badge svg{width:13px;height:13px;}
+  .mini-badge img{width:100%;height:100%;object-fit:contain;}
+  .mini-item .t{font-weight:600;line-height:1.35;}
+  .mini-item .s{color:var(--muted);font-size:11.5px;}
+  .sc-more{display:inline-block;margin-top:12px;font-size:12.5px;font-weight:600;}
+
+  .pub-card{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;background:var(--accent-soft);border:1px solid transparent;text-decoration:none;color:var(--text);transition:border-color .15s,transform .15s;}
+  .pub-card:hover{border-color:var(--accent);}
+  .pub-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  @media (prefers-reduced-motion:no-preference){.pub-card:hover{transform:translateY(-1px);}}
+  .pub-icon{flex:none;width:38px;height:38px;border-radius:10px;background:var(--bg-alt);color:var(--accent-contrast);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .pub-icon svg{width:19px;height:19px;}
+  .pub-icon img{width:100%;height:100%;object-fit:contain;padding:3px;}
+  .pub-body{flex:1;min-width:0;}
+  .pub-title{font-size:14.5px;font-weight:700;}
+  .pub-sub{font-size:11.5px;color:var(--accent);font-weight:600;margin-top:1px;letter-spacing:.01em;}
+  .pub-arrow{flex:none;color:var(--muted);}
+  .pub-arrow svg{width:15px;height:15px;}
+
+  .main-col h2.section-title{font-family:var(--serif);font-weight:400;font-size:23px;margin:0 0 18px;display:flex;align-items:center;gap:11px;}
+  .section-title .title-icon{width:34px;height:34px;border-radius:9px;background:#fff;box-shadow:var(--shadow);flex:none;display:flex;align-items:center;justify-content:center;padding:5px;}
+  .section-title .title-icon img{width:100%;height:100%;object-fit:contain;}
+  .block{margin-bottom:40px;}
+  .block:last-child{margin-bottom:0;}
+
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:20px 22px;margin-bottom:14px;}
+  .card:last-child{margin-bottom:0;}
+
+  .job-top{display:flex;gap:14px;align-items:flex-start;}
+  .logo{flex:none;width:42px;height:42px;border-radius:9px;background:var(--accent);color:var(--accent-contrast);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:14px;font-weight:700;letter-spacing:.02em;}
+  .job-head-row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;width:100%;flex-wrap:wrap;}
+  .job-role{font-size:16px;font-weight:700;margin:0 0 2px;}
+  .job-org{font-size:13px;color:var(--accent);font-weight:600;}
+  .job-meta{font-size:12px;color:var(--muted);margin-top:3px;}
+  .chip{font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;color:var(--muted);border:1px solid var(--border);background:var(--bg-alt);padding:3px 9px;border-radius:999px;white-space:nowrap;}
+
+  .job-groups{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);}
+  .job-group{margin-bottom:12px;}
+  .job-group:last-child{margin-bottom:0;}
+  .job-group h4{font-size:12px;font-weight:700;margin:0 0 6px;color:var(--text);}
+  .job-group ul{margin:0;padding-left:17px;}
+  .job-group li{font-size:13.5px;color:var(--muted);margin-bottom:5px;}
+  .job-group li:last-child{margin-bottom:0;}
+
+  .edu-top{display:flex;gap:14px;align-items:flex-start;}
+  .edu-title{font-size:15px;font-weight:700;margin:0 0 2px;}
+  .edu-org{font-size:13px;color:var(--accent);font-weight:600;}
+  .edu-meta{font-size:12px;color:var(--muted);margin-top:3px;}
+  .edu-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+  .edu-tag{font-size:11.5px;padding:3px 8px;border-radius:5px;background:var(--bg-alt);border:1px solid var(--border);color:var(--muted);}
+
+  .cert-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  @media (max-width:640px){.cert-grid{grid-template-columns:1fr;}}
+  .cert{display:flex;align-items:flex-start;gap:10px;padding:13px 16px;background:var(--card);}
+  .cert-badge{flex:none;width:34px;height:34px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;margin-top:1px;overflow:hidden;}
+  .cert-badge svg{width:15px;height:15px;}
+  .cert-badge img{width:100%;height:100%;object-fit:contain;}
+  .cert-name{font-size:13px;font-weight:600;line-height:1.35;}
+  .cert-sub{font-size:11px;color:var(--muted);margin-top:2px;font-family:var(--mono);}
+
+  footer{max-width:1080px;margin:0 auto;padding:8px 20px 56px;text-align:center;}
+  footer p{color:var(--muted);font-size:13px;margin:0 0 14px;}
+  .foot-links{display:flex;gap:12px;justify-content:center;}
+
+  .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}.btn{transition:none;}}
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="topbar-inner">
+      <span class="brand">Luigi Pellegrino</span>
+      <div class="langtoggle" role="group" aria-label="Language">
+        <button type="button" data-lang-btn="it" aria-pressed="false">IT</button>
+        <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="banner" aria-hidden="true"></div>
+      <div class="sc-card">
+        <img class="avatar" src="assets/immagineProfilo.jpg" alt="Luigi Pellegrino">
+        <h1>Luigi Pellegrino</h1>
+        <p class="sc-role">Salesforce Developer<br>Application &amp; System Architect</p>
+        <p class="sc-bio" data-it="Sviluppatore Salesforce specializzato in Service Cloud, Experience Cloud, Apex, LWC e integrazioni enterprise."
+           data-en="Salesforce Developer specialized in Service Cloud, Experience Cloud, Apex, LWC and enterprise integrations."></p>
+        <div class="sc-btns">
+          <a class="btn primary" href="https://www.linkedin.com/in/luigipellegrino87" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.24h4V23h-4V8.24zM8.5 8.24h3.83v2.01h.05c.53-1 1.84-2.06 3.79-2.06 4.06 0 4.81 2.67 4.81 6.14V23h-4v-6.9c0-1.65-.03-3.77-2.3-3.77-2.3 0-2.65 1.8-2.65 3.65V23h-4V8.24z"/></svg>
+            <span data-it="Contattami su LinkedIn" data-en="Connect on LinkedIn"></span>
+          </a>
+          <a class="btn" href="https://www.salesforce.com/trailblazer/luigipellegrino" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2l2.6 5.9 6.4.6-4.8 4.3 1.5 6.3L12 15.9l-5.7 3.2 1.5-6.3L3 8.5l6.4-.6L12 2z" stroke-linejoin="round"/></svg>
+            <span data-it="Profilo Trailhead" data-en="Trailhead profile"></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="sc-section">
+        <h2 data-it="Informazioni" data-en="Information"></h2>
+        <div class="info-row">
+          <span class="k" data-it="Località" data-en="Location"></span>
+          <span class="v" data-it="Bari, Italia" data-en="Bari, Italy"></span>
+        </div>
+        <div class="info-row">
+          <span class="k" data-it="Esperienza" data-en="Experience"></span>
+          <span class="v" id="exp-counter">—</span>
+        </div>
+        <div class="info-row">
+          <span class="k" data-it="Certificazioni" data-en="Certifications"></span>
+          <span class="v">16 <span data-it="attive" data-en="active"></span></span>
+        </div>
+      </div>
+
+      <div class="sc-section">
+        <h2 data-it="Competenze" data-en="Skills &amp; Expertise"></h2>
+        <p class="skill-sub" data-it="Piattaforma" data-en="Platform"></p>
+        <div class="tags">
+          <span class="tag">Apex</span><span class="tag">LWC</span><span class="tag">Aura</span>
+          <span class="tag">Flow Builder</span><span class="tag">OmniStudio</span>
+          <span class="tag">Service Cloud</span><span class="tag">Experience Cloud</span>
+        </div>
+        <p class="skill-sub" data-it="Integrazioni &amp; strumenti" data-en="Integrations &amp; tools"></p>
+        <div class="tags">
+          <span class="tag">REST API</span><span class="tag">SOAP API</span><span class="tag">OAuth 2.0</span>
+          <span class="tag">Git</span><span class="tag">VS Code</span><span class="tag">SFDX CLI</span><span class="tag">Data Loader</span>
+        </div>
+        <p class="skill-sub" data-it="Settori" data-en="Industries"></p>
+        <div class="tags">
+          <span class="tag">Energy &amp; Utilities</span>
+          <span class="tag" data-it="Istruzione" data-en="Education"></span>
+          <span class="tag">Telco</span><span class="tag">Banking</span><span class="tag">Automotive</span>
+        </div>
+      </div>
+
+      <div class="sc-section">
+        <h2 data-it="Pubblicazioni" data-en="Publications"></h2>
+        <a class="pub-card" href="https://chromewebstore.google.com/detail/forcekit/gilmnacbmadobfhnedbolnnnhecfjlna" target="_blank" rel="noopener noreferrer">
+          <div class="pub-icon"><img src="assets/forceKIT.png" alt=""></div>
+          <div class="pub-body">
+            <div class="pub-title">ForceKit</div>
+            <div class="pub-sub" data-it="Estensione Chrome" data-en="Chrome Extension"></div>
+          </div>
+          <div class="pub-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+        </a>
+      </div>
+
+      <div class="sc-section">
+        <h2 data-it="Certificazioni principali" data-en="Top certifications"></h2>
+        <div class="mini-list">
+          <div class="mini-item">
+            <div class="mini-badge"><img src="assets/2021-03_Badge_SF-Certified_System-Architect_500x490px.png" alt=""></div>
+            <div><div class="t">System Architect</div><div class="s">04.2026</div></div>
+          </div>
+          <div class="mini-item">
+            <div class="mini-badge"><img src="assets/2021-03_Badge_SF-Certified_Application-Architect_500x490px.png" alt=""></div>
+            <div><div class="t">Application Architect</div><div class="s">02.2026</div></div>
+          </div>
+          <div class="mini-item">
+            <div class="mini-badge"><img src="assets/2025-03_Badge_SF-Certified_Plat-Integration-Arch_500x490px.png" alt=""></div>
+            <div><div class="t">Platform Integration Architect</div><div class="s">03.2026</div></div>
+          </div>
+          <div class="mini-item">
+            <div class="mini-badge"><img src="assets/2025-03_Badge_SF-Certified_Plat-Data-Arch_500x490px.png" alt=""></div>
+            <div><div class="t">Platform Data Architect</div><div class="s">01.2026</div></div>
+          </div>
+        </div>
+        <a class="sc-more" href="#certifications" data-it="Vedi tutte (16) →" data-en="See all (16) →"></a>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-col">
+
+      <div class="block reveal" id="experience">
+        <h2 class="section-title"><span class="title-icon"><img src="assets/experience.png" alt=""></span><span data-it="Esperienza" data-en="Experience"></span></h2>
+
+        <article class="card">
+          <div class="job-top">
+            <div class="logo">F</div>
+            <div style="flex:1;min-width:0;">
+              <div class="job-head-row">
+                <div>
+                  <p class="job-role" data-it="Salesforce Developer" data-en="Salesforce Developer"></p>
+                  <p class="job-org">Fincons S.p.A.</p>
+                  <p class="job-meta">📍 <span data-it="Bari, Italia" data-en="Bari, Italy"></span> &nbsp;·&nbsp; 12.2024 – <span data-it="oggi" data-en="present"></span></p>
+                </div>
+                <span class="chip" data-it="Full-time" data-en="Full-time"></span>
+              </div>
+              <div class="job-groups">
+                <div class="job-group">
+                  <h4 data-it="Analisi e progettazione" data-en="Analysis and design"></h4>
+                  <ul><li data-it="Analisi tecnica, progettazione e sviluppo di soluzioni Salesforce in contesti enterprise, in collaborazione con analisti funzionali e stakeholder di business."
+                          data-en="Technical analysis, design and development of Salesforce solutions in enterprise contexts, working with functional analysts and business stakeholders."></li></ul>
+                </div>
+                <div class="job-group">
+                  <h4 data-it="Sviluppo e automazione" data-en="Development and automation"></h4>
+                  <ul>
+                    <li data-it="Progettazione e sviluppo di flussi automatizzati con Salesforce Flow, incluse le attività di migrazione da Process Builder e Workflow Rule verso architetture più scalabili e manutenibili."
+                        data-en="Design and development of automated workflows with Salesforce Flow, including migration from Process Builder and Workflow Rules to more scalable, maintainable architectures."></li>
+                    <li data-it="Sviluppo di Lightning Web Components (LWC) e logiche Apex (Trigger, Batch, Queueable, servizi REST), con refactoring e migrazione da Salesforce Classic a Lightning Experience."
+                        data-en="Development of Lightning Web Components (LWC) and Apex logic (Triggers, Batch, Queueable, REST services), with refactoring and migration from Salesforce Classic to Lightning Experience."></li>
+                  </ul>
+                </div>
+                <div class="job-group">
+                  <h4 data-it="Integrazioni" data-en="Integrations"></h4>
+                  <ul><li data-it="Sviluppo e manutenzione di integrazioni REST/SOAP con sistemi esterni, inclusa la realizzazione di nuovi Web Service in esposizione e in consumo."
+                          data-en="Development and maintenance of REST/SOAP integrations with external systems, including new inbound and outbound web services."></li></ul>
+                </div>
+                <div class="job-group">
+                  <h4 data-it="Release, performance e qualità" data-en="Release, performance and quality"></h4>
+                  <ul>
+                    <li data-it="Versionamento del codice e gestione dei rilasci tramite Git, con deployment su ambienti Sandbox e UAT nel rispetto delle best practice di sviluppo."
+                        data-en="Code versioning and release management with Git, deploying to Sandbox and UAT environments following development best practices."></li>
+                    <li data-it="Ottimizzazione delle performance della piattaforma, gestione dei governor limits e risoluzione di problematiche tecniche complesse."
+                        data-en="Platform performance optimization, governor limits management, and resolution of complex technical issues."></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="job-top">
+            <div class="logo">BC</div>
+            <div style="flex:1;min-width:0;">
+              <div class="job-head-row">
+                <div>
+                  <p class="job-role" data-it="Salesforce Developer" data-en="Salesforce Developer"></p>
+                  <p class="job-org">Balance Consulting S.p.A.</p>
+                  <p class="job-meta">📍 <span data-it="Bari (full-remote), Italia" data-en="Bari (full-remote), Italy"></span> &nbsp;·&nbsp; 01.2023 – 12.2024</p>
+                </div>
+                <span class="chip" data-it="Full-time · Remoto" data-en="Full-time · Remote"></span>
+              </div>
+              <div class="job-groups">
+                <div class="job-group">
+                  <h4 data-it="Sviluppo Apex e automazione" data-en="Apex development and automation"></h4>
+                  <ul>
+                    <li data-it="Sviluppo di logiche di business con Apex, LWC, Aura Components e Salesforce Flow, tra evolutive, manutenzione correttiva, bug fixing e troubleshooting."
+                        data-en="Development of business logic with Apex, LWC, Aura Components and Salesforce Flow, covering new features, corrective maintenance, bug fixing and troubleshooting."></li>
+                    <li data-it="Sviluppo e manutenzione di trigger Apex per logiche di validazione, aggiornamento dati e integrazione con processi asincroni, nel rispetto dei governor limits."
+                        data-en="Development and maintenance of Apex triggers for validation logic, data updates and integration with asynchronous processes, respecting governor limits."></li>
+                    <li data-it="Realizzazione e ottimizzazione di Flow avanzati, inclusi Screen Flow per processi guidati di business (es. anonimizzazione utenti) in conformità con requisiti di compliance."
+                        data-en="Development and optimization of advanced Flows, including Screen Flows for guided business processes (e.g. user anonymization) in line with compliance requirements."></li>
+                  </ul>
+                </div>
+                <div class="job-group">
+                  <h4 data-it="Service &amp; Experience Cloud" data-en="Service &amp; Experience Cloud"></h4>
+                  <ul>
+                    <li data-it="Configurazione e personalizzazione di Service Cloud ed Experience Cloud, con sviluppo di Community Salesforce per FAQ, news, ticketing e licensing."
+                        data-en="Configuration and customization of Service Cloud and Experience Cloud, developing Salesforce Communities for FAQs, news, ticketing and licensing."></li>
+                    <li data-it="Componenti custom LWC e Aura per autenticazione, upload documenti e workflow approvativi; configurazione di sharing model e visibilità dati per utenti partner/community."
+                        data-en="Custom LWC and Aura components for authentication, document upload and approval workflows; sharing model configuration and data visibility for partner/community users."></li>
+                    <li data-it="Configurazione di soluzioni Omni-Channel e funzionalità Einstein per l'ottimizzazione dei processi di customer service."
+                        data-en="Configuration of Omni-Channel solutions and Einstein features to optimize customer service processes."></li>
+                  </ul>
+                </div>
+                <div class="job-group">
+                  <h4 data-it="Integrazioni ed elaborazione dati" data-en="Integrations and data processing"></h4>
+                  <ul>
+                    <li data-it="Sviluppo e gestione di integrazioni REST con sistemi enterprise esterni e Marketing Cloud, incluse verifiche in tempo reale."
+                        data-en="Development and management of REST integrations with external enterprise systems and Marketing Cloud, including real-time verification."></li>
+                    <li data-it="Implementazione di processi batch e schedulati (Batch Apex, Scheduled Apex, Queueable, Future methods) per l'elaborazione massiva dei dati."
+                        data-en="Implementation of batch and scheduled processes (Batch Apex, Scheduled Apex, Queueable, Future methods) for large-scale data processing."></li>
+                    <li data-it="Progettazione di architetture event-driven basate su Platform Event e staging object per scalabilità e affidabilità nello scambio dati."
+                        data-en="Design of event-driven architectures based on Platform Events and staging objects for scalable, reliable data exchange."></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="job-top">
+            <div class="logo">EX</div>
+            <div style="flex:1;min-width:0;">
+              <div class="job-head-row">
+                <div>
+                  <p class="job-role" data-it="Salesforce Junior Developer" data-en="Salesforce Junior Developer"></p>
+                  <p class="job-org">Exprivia S.p.A.</p>
+                  <p class="job-meta">📍 <span data-it="Molfetta, Italia" data-en="Molfetta, Italy"></span> &nbsp;·&nbsp; 11.2020 – 12.2022</p>
+                </div>
+                <span class="chip" data-it="Full-time" data-en="Full-time"></span>
+              </div>
+              <div class="job-groups">
+                <div class="job-group">
+                  <h4 data-it="Sviluppo e supporto" data-en="Development and support"></h4>
+                  <ul>
+                    <li data-it="Supporto allo sviluppo di applicazioni Salesforce e di componenti LWC/Aura e logiche Apex." data-en="Support for Salesforce application development and LWC/Aura components and Apex logic."></li>
+                    <li data-it="Manutenzione applicativa e bug fixing su funzionalità esistenti." data-en="Application maintenance and bug fixing on existing features."></li>
+                  </ul>
+                </div>
+                <div class="job-group">
+                  <h4 data-it="Configurazione e manutenzione" data-en="Configuration and maintenance"></h4>
+                  <ul>
+                    <li data-it="Configurazione di Flow, Process Builder, Workflow Rule, profili utente, permessi e oggetti custom." data-en="Configuration of Flow, Process Builder, Workflow Rules, user profiles, permissions and custom objects."></li>
+                    <li data-it="Gestione ticket tecnici, risoluzione problematiche applicative e collaborazione con il team senior nelle attività di analisi e sviluppo." data-en="Technical ticket management, issue resolution and collaboration with the senior team on analysis and development."></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="block reveal" id="education">
+        <h2 class="section-title"><span class="title-icon"><img src="assets/education.png" alt=""></span><span data-it="Istruzione" data-en="Education"></span></h2>
+
+        <article class="card">
+          <div class="edu-top">
+            <div class="logo">L31</div>
+            <div style="flex:1;min-width:0;">
+              <p class="edu-title" data-it="Laurea Triennale in Informatica per le Aziende Digitali (L-31)" data-en="Bachelor's Degree in Computer Science for Digital Enterprises (L-31)"></p>
+              <p class="edu-meta">📍 <span data-it="Bari, Italia" data-en="Bari, Italy"></span> &nbsp;·&nbsp; EQF 6</p>
+              <div class="edu-tags">
+                <span class="edu-tag" data-it="Programmazione e sviluppo software" data-en="Software programming &amp; development"></span>
+                <span class="edu-tag" data-it="Basi di dati" data-en="Databases"></span>
+                <span class="edu-tag" data-it="Applicazioni web e mobile" data-en="Web &amp; mobile applications"></span>
+                <span class="edu-tag" data-it="Sicurezza informatica" data-en="Cybersecurity"></span>
+                <span class="edu-tag" data-it="Business intelligence" data-en="Business intelligence"></span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="edu-top">
+            <div class="logo">ITS</div>
+            <div style="flex:1;min-width:0;">
+              <p class="edu-title" data-it="Tecnico Superiore per i Metodi e le Tecnologie per lo Sviluppo di Sistemi" data-en="Higher Technician in Methods and Technologies for Systems Development"></p>
+              <p class="edu-org">ITS Apulia Digital Maker</p>
+              <p class="edu-meta">📍 <span data-it="Molfetta, Italia" data-en="Molfetta, Italy"></span> &nbsp;·&nbsp; EQF 5</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="edu-top">
+            <div class="logo">LS</div>
+            <div style="flex:1;min-width:0;">
+              <p class="edu-title" data-it="Liceo Scientifico" data-en="Scientific High School Diploma"></p>
+              <p class="edu-org">Liceo Scientifico Federico II di Svevia</p>
+              <p class="edu-meta">📍 <span data-it="Melfi, Italia" data-en="Melfi, Italy"></span> &nbsp;·&nbsp; EQF 4</p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="block reveal" id="certifications">
+        <h2 class="section-title"><span class="title-icon"><img src="assets/certification.png" alt=""></span><span data-it="Certificazioni" data-en="Certifications"></span></h2>
+        <div class="cert-grid">
+          <div class="cert"><div class="cert-badge"><img src="assets/2021-03_Badge_SF-Certified_System-Architect_500x490px.png" alt=""></div><div><div class="cert-name">Salesforce Certified System Architect</div><div class="cert-sub">11.04.2026 · ID 7655489</div></div></div>
+          <div class="cert"><div class="cert-badge"><img src="assets/2025-03_Badge_SF-Certified_Plat-ID-Access-Mgmt-Arch_500x490px.png" alt=""></div><div><div class="cert-name">Salesforce Certified Platform Identity and Access Management Architect</div><div class="cert-sub">11.04.2026 · ID 7655488</div></div></div>
+          <div class="cert"><div class="cert-badge"><img src="assets/2025-03_Badge_SF-Certified_Plat-Integration-Arch_500x490px.png" alt=""></div><div><div class="cert-name">Salesforce Certified Platform Integration Architect</div><div class="cert-sub">18.03.2026 · ID 7556642</div></div></div>
+          <div class="cert"><div class="cert-badge"><img src="assets/2025-04_Badge_SF-Certified_Plat-Dev-LC-Dep-Arch_500x490px.png" alt=""></div><div><div class="cert-name">Salesforce Certified Platform Development Lifecycle &amp; Deployment Architect</div><div class="cert-sub">14.03.2026 · ID 7541340</div></div></div>
+          <div class="cert"><div class="cert-badge"><img src="assets/2021-03_Badge_SF-Certified_Application-Architect_500x490px.png" alt=""></div><div><div class="cert-name">Salesforce Certified Application Architect</div><div class="cert-sub">08.02.2026 · ID 7442648</div></div></div>
+          <div class="cert"><div class="cert-badge"><img src="assets/2025-03_Badge_SF-Certified_Plat-Sharing-Vis-Arch_500x490px.png" alt=""></div><div><div class="cert-name">Salesforce Certified Platform Sharing and Visibility Architect</div><div class="cert-sub">08.02.2026 · ID 7442647</div></div></div>
+          <div class="cert"><div class="cert-badge"><img src="assets/2025-03_Badge_SF-Certified_Plat-Data-Arch_500x490px.png" alt=""></div><div><div class="cert-name">Salesforce Certified Platform Data Architect</div><div class="cert-sub">21.01.2026 · ID 7392305</div></div></div>
+          <div class="cert"><div class="cert-badge"><img src="assets/2025-03_Badge_SF-Certified_Plat-UX-Dsgn_500x490px.png" alt=""></div><div><div class="cert-name">Salesforce Certified Platform User Experience Designer</div><div class="cert-sub">14.01.2026 · ID 7372355</div></div></div>
+          <div class="cert"><div class="cert-badge"><img src="assets/2025-04_Badge_SF-Certified_Omnistudio-Dev_500x490px.png" alt=""></div><div><div class="cert-name">Salesforce OmniStudio Developer</div><div class="cert-sub">28.01.2025 · ID 5711067</div></div></div>
+          <div class="cert"><div class="cert-badge"><img src="assets/2025-02_Badge_SF-Certified_Agentforce-Specialist_Low-Res.png" alt=""></div><div><div class="cert-name">Salesforce Certified AI Specialist</div><div class="cert-sub">24.11.2024 · ID 5308757</div></div></div>
+          <div class="cert"><div class="cert-badge"><img src="assets/2026-01_Badge_SF-Certified_AI-Associate_500x490px_RETIRED.png" alt=""></div><div><div class="cert-name">Salesforce Certified AI Associate</div><div class="cert-sub">24.11.2024 · ID 5307045</div></div></div>
+          <div class="cert"><div class="cert-badge"><img src="assets/2021-03_Badge_SF-Certified_Platform-App-Builder_500x490px.png" alt=""></div><div><div class="cert-name">Salesforce Platform App Builder</div><div class="cert-sub">02.04.2023 · ID 3161085</div></div></div>
+          <div class="cert"><div class="cert-badge"><img src="assets/AccreditedMobile.png" alt=""></div><div><div class="cert-name">Salesforce Mobile Accredited Professional</div><div class="cert-sub">26.03.2023 · <a href="https://www.credly.com/badges/778c1d13-3697-4650-bc20-9edea5c0362d/print" target="_blank" rel="noopener noreferrer">Credly</a></div></div></div>
+          <div class="cert"><div class="cert-badge"><img src="assets/2025-03_JavaScript-Dev_500x490.png" alt=""></div><div><div class="cert-name">Salesforce Certified JavaScript Developer I</div><div class="cert-sub">05.01.2023 · ID 2847602</div></div></div>
+          <div class="cert"><div class="cert-badge"><img src="assets/2021-03_Badge_SF-Certified_Platform-Developer-II_500x490px.png" alt=""></div><div><div class="cert-name">Salesforce Certified Platform Developer II</div><div class="cert-sub">26.12.2022 · ID 2818882</div></div></div>
+          <div class="cert"><div class="cert-badge"><img src="assets/2025-04_Badge_SF-Certified_Plat-Dev_500x490px.png" alt=""></div><div><div class="cert-name">Salesforce Certified Platform Developer I</div><div class="cert-sub">28.11.2021 · ID 22671112</div></div></div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <footer>
+    <p data-it="Aperto a nuove opportunità e collaborazioni." data-en="Open to new opportunities and collaborations."></p>
+    <div class="foot-links">
+      <a class="btn" href="https://www.linkedin.com/in/luigipellegrino87" target="_blank" rel="noopener noreferrer" data-it="LinkedIn" data-en="LinkedIn"></a>
+      <a class="btn" href="https://www.salesforce.com/trailblazer/luigipellegrino" target="_blank" rel="noopener noreferrer" data-it="Trailhead" data-en="Trailhead"></a>
+    </div>
+  </footer>
+
+<script>
+(function(){
+  var STORAGE_KEY = 'lp-profile-lang';
+
+  function applyLang(lang){
+    document.querySelectorAll('[data-it]').forEach(function(el){
+      el.textContent = lang === 'it' ? el.getAttribute('data-it') : el.getAttribute('data-en');
+    });
+    document.querySelectorAll('[data-lang-btn]').forEach(function(btn){
+      btn.setAttribute('aria-pressed', btn.getAttribute('data-lang-btn') === lang ? 'true' : 'false');
+    });
+    document.documentElement.lang = lang;
+    updateExperienceCounter(lang);
+    try { localStorage.setItem(STORAGE_KEY, lang); } catch(e){}
+  }
+
+  function updateExperienceCounter(lang){
+    var start = new Date(2020, 10, 19);
+    var now = new Date();
+    var months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
+    if (now.getDate() < start.getDate()) months -= 1;
+    if (months < 0) months = 0;
+    var years = Math.floor(months / 12);
+    var remMonths = months % 12;
+    var el = document.getElementById('exp-counter');
+    if (!el) return;
+    if (lang === 'it') {
+      el.textContent = years + (years === 1 ? ' anno' : ' anni') + ', ' + remMonths + (remMonths === 1 ? ' mese' : ' mesi');
+    } else {
+      el.textContent = years + (years === 1 ? ' year' : ' years') + ', ' + remMonths + (remMonths === 1 ? ' month' : ' months');
+    }
+  }
+
+  var initial = 'en';
+  try {
+    var saved = localStorage.getItem(STORAGE_KEY);
+    if (saved === 'it' || saved === 'en') initial = saved;
+  } catch(e){}
+
+  document.querySelectorAll('[data-lang-btn]').forEach(function(btn){
+    btn.addEventListener('click', function(){ applyLang(btn.getAttribute('data-lang-btn')); });
+  });
+
+  applyLang(initial);
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.06 });
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+</body>
+</html>
