@@ -93,6 +93,7 @@
   .sc-more{display:inline-block;margin-top:12px;font-size:12.5px;font-weight:600;}
 
   .pub-card{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;background:var(--accent-soft);border:1px solid transparent;text-decoration:none;color:var(--text);transition:border-color .15s,transform .15s;}
+  .pub-card + .pub-card{margin-top:10px;}
   .pub-card:hover{border-color:var(--accent);}
   .pub-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
   @media (prefers-reduced-motion:no-preference){.pub-card:hover{transform:translateY(-1px);}}
@@ -233,6 +234,14 @@
           <div class="pub-icon"><img src="assets/forceKIT.png" alt=""></div>
           <div class="pub-body">
             <div class="pub-title">ForceKit</div>
+            <div class="pub-sub" data-it="Estensione Chrome" data-en="Chrome Extension"></div>
+          </div>
+          <div class="pub-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+        </a>
+        <a class="pub-card" href="https://chromewebstore.google.com/detail/profile-manager/ckfnbebenilgjfcengjhaibbbcgoplgi" target="_blank" rel="noopener noreferrer">
+          <div class="pub-icon"><img src="assets/profileManager.png" alt=""></div>
+          <div class="pub-body">
+            <div class="pub-title">Profile Manager</div>
             <div class="pub-sub" data-it="Estensione Chrome" data-en="Chrome Extension"></div>
           </div>
           <div class="pub-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
