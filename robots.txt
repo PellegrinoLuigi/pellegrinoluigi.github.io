@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pellegrinoluigi.github.io/creativeapp/sitemap.xml
+Sitemap: https://pellegrinoluigi.github.io/creativeapp/forcekit/sitemap.xml
+Sitemap: https://pellegrinoluigi.github.io/creativeapp/imagecomparestudio/sitemap.xml
+Sitemap: https://pellegrinoluigi.github.io/creativeapp/omnikit/sitemap.xml
+Sitemap: https://pellegrinoluigi.github.io/creativeapp/profilemanager/sitemap.xml
